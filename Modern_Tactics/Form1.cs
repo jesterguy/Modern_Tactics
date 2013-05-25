@@ -19,6 +19,8 @@ namespace Modern_Tactics
         public Form1()
         {
             InitializeComponent();
+            this.Width = 1000;
+            this.Height = 800;
         }
 
         private void openGLControl1_Load(object sender, EventArgs e)
