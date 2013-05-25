@@ -1,4 +1,6 @@
-﻿namespace Modern_Tactics
+﻿using System;
+using System.Configuration;
+namespace Modern_Tactics
 {
     partial class Form1
     {
@@ -34,20 +36,21 @@
             // 
             // openGLControl1
             // 
-            this.openGLControl1.BitDepth = 24;
-            this.openGLControl1.DrawFPS = false;
+            this.openGLControl1.BitDepth = 32;
+            this.openGLControl1.DrawFPS = true;
             this.openGLControl1.FrameRate = 20;
-            this.openGLControl1.Location = new System.Drawing.Point(12, 285);
+            this.openGLControl1.Location = new System.Drawing.Point(12, 12);
             this.openGLControl1.Name = "openGLControl1";
             this.openGLControl1.RenderContextType = SharpGL.RenderContextType.DIBSection;
-            this.openGLControl1.Size = new System.Drawing.Size(150, 150);
+            this.openGLControl1.Size = new System.Drawing.Size(551, 423);
             this.openGLControl1.TabIndex = 0;
+            this.openGLControl1.Load += new System.EventHandler(this.openGLControl1_Load);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(575, 447);
+            this.ClientSize = new System.Drawing.Size(582, 447);
             this.Controls.Add(this.openGLControl1);
             this.Name = "Form1";
             this.Text = "Form1";

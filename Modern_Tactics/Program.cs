@@ -15,7 +15,6 @@ namespace Modern_Tactics
         [STAThread]
         static void Main()
         {
-            var whatevs = ConfigurationManager.AppSettings["lolol"];
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
