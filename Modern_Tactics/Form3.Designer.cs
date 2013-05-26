@@ -42,6 +42,7 @@
             this.openGLControl1.RenderContextType = SharpGL.RenderContextType.FBO;
             this.openGLControl1.Size = new System.Drawing.Size(579, 455);
             this.openGLControl1.TabIndex = 0;
+            this.openGLControl1.OpenGLDraw += new System.Windows.Forms.PaintEventHandler(this.openGLControl1_OpenGLDraw);
             // 
             // Form3
             // 
