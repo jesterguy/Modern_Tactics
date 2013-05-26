@@ -24,5 +24,10 @@ namespace Modern_Tactics
         {
 
         }
+
+        private void sceneControl1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

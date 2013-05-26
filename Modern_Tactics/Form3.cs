@@ -23,19 +23,31 @@ namespace Modern_Tactics
             //  Get the OpenGL object, just to clean up the code.
             OpenGL gl = this.openGLControl1.OpenGL;
 
+            gl.MatrixMode(OpenGL.GL_PROJECTION);
+            gl.LoadIdentity();
+            gl.Ortho(0, openGLControl1.Width, openGLControl1.Height, 0, -10, 10);
+
+            //  Back to the modelview.
+            gl.MatrixMode(OpenGL.GL_MODELVIEW);
+
             gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);	// Clear The Screen And The Depth Buffer
             gl.LoadIdentity();					// Reset The View
 
            // gl.Color(1.0f, 1.0f, 1.0f);
            // gl.FontBitmaps.DrawText(gl, 0, 0, "Arial", "Argh");
 
-            
+            gl.LineWidth(2.0f);
+            gl.Begin(OpenGL.GL_LINES);							// Start Drawing Verticle Cell Borders
+            gl.Color(1.0f, 0.0f, 0.0f);// Left Side Of Horizontal Line
+            gl.Vertex(0, 32, -1.0f);
+            gl.Vertex(32, 32, -1.0f);// Right Side Of Horizontal Line
+            gl.End();
 
-            gl.Translate(-1.5f, 0.0f, -6.0f);				// Move Left And Into The Screen
+            gl.Translate(-1.5f, 0.0f, -8.0f);				// Move Left And Into The Screen
 
             gl.Rotate(rtri, 0.0f, 1.0f, 0.0f);				// Rotate The Pyramid On It's Y Axis
 
-            gl.Begin(OpenGL.GL_TRIANGLES);					// Start Drawing The Pyramid
+            gl.Begin(OpenGL.GL_LINES);					// Start Drawing The Pyramid
 
             gl.Color(1.0f, 0.0f, 0.0f);			// Red
             gl.Vertex(0.0f, 1.0f, 0.0f);			// Top Of Triangle (Front)

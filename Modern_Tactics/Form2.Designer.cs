@@ -34,6 +34,9 @@
             // 
             // openGLControl1
             // 
+            this.openGLControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.openGLControl1.BitDepth = 32;
             this.openGLControl1.DrawFPS = false;
             this.openGLControl1.FrameRate = 30;
@@ -42,6 +45,8 @@
             this.openGLControl1.RenderContextType = SharpGL.RenderContextType.FBO;
             this.openGLControl1.Size = new System.Drawing.Size(715, 553);
             this.openGLControl1.TabIndex = 0;
+            this.openGLControl1.OpenGLDraw += new System.Windows.Forms.PaintEventHandler(this.openGLControl1_OpenGLDraw);
+            
             // 
             // Form2
             // 
