@@ -62,6 +62,8 @@ namespace Modern_Tactics
         #endregion
 
         private SharpGL.OpenGLControl openGLControl1;
+        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
+        private Microsoft.VisualBasic.PowerPacks.LineShape lineShape1;
     }
 }
 

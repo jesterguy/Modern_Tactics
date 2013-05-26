@@ -13,14 +13,11 @@ namespace Modern_Tactics
 {
     public partial class Form1 : Form
     {
-        int FPS = Int32.Parse(ConfigurationManager.AppSettings["FRAMES_PER_SECOND"]);
-        int WIN_WIDTH = Int32.Parse(ConfigurationManager.AppSettings["WINDOW_WIDTH"]);
-        int WIN_HEIGHT = Int32.Parse(ConfigurationManager.AppSettings["WINDOW_HEIGHT"]);
         public Form1()
         {
             InitializeComponent();
-            this.Width = 1000;
-            this.Height = 800;
+            this.Width = Int32.Parse(ConfigurationManager.AppSettings["WINDOW_WIDTH"]);
+            this.Height = Int32.Parse(ConfigurationManager.AppSettings["WINDOW_HEIGHT"]);
         }
 
         private void openGLControl1_Load(object sender, EventArgs e)
