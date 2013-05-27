@@ -3,56 +3,79 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Modern_Tactics
 {
-    class Camera
-    {
-        int x;
-        int y;
-        int w;
-        int h;
+	class Camera
+	{
+		public int x
+		{
+			get
+			{
+				return x;
+			}
+			set
+			{
+				if (value < 0)
+				{
+					this.x = 0;
+				}
+				else if (this.x + this.w > tileMap.mapWidth)
+				{
+					this.x = tileMap.mapWidth - this.w;
+				}
+				else
+				{
+					this.x = value;
+				}
+			}
+		}
 
-        int scrollSpeed;
+		public int y
+		{
+			get
+			{
+				return y;
+			}
+			set
+			{
+				if (value < 0)
+				{
+					this.y = 0;
+				}
+				else if (this.y + this.w > tileMap.mapHeight)
+				{
+					this.y = tileMap.mapHeight - this.h;
+				}
+				else
+				{
+					this.y = value;
+				}
+			}
+		}
+		public int w { get; set; }
+		public int h { get; set; }
 
-        Camera()
-        {
-            x = 0;
-            y = 0;
-            w = 715;//change these plz
-            h = 553;
+		private TileMap tileMap;
 
-            scrollSpeed = 20;
-        }
-        Camera(int winWidth, int winHeight)
-        {
-            x = 0;
-            y = 0;
-            w = winWidth;
-            h = winHeight;
+		int scrollSpeed;
 
-            scrollSpeed = 20;
-        }
+		public Camera(ref TileMap tilemap, int winWidth = 715, int winHeight = 553)
+		{
+			x = 0;
+			y = 0;
+			w = winWidth;
+			h = winHeight;
 
-        void BoundsCheck(int MapWidth, int MapHeight)
-        {
-            if (this.x < 0)
-            {
-                this.x = 0;
-            }
-            if (this.y < 0)
-            {
-                this.y = 0;
-            }
+			scrollSpeed = 20;
+			this.tileMap = tilemap;
+		}
 
-            if (this.x + this.w > MapWidth)
-            {
-                this.x = MapWidth - this.w;
-            }
-            if (this.y + this.h > MapHeight)
-            {
-                this.y = MapHeight - this.h;
-            }
-        }
-    }
+		public void handleMouseMove(object sender, MouseEventArgs e)
+		{
+			this.x = e.X;
+			this.y = e.Y;
+		}
+	}
 }
