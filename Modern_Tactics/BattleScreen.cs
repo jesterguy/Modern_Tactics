@@ -19,8 +19,6 @@ namespace Modern_Tactics
          InitializeComponent();
          this.openGLControl1.DrawFPS = true;
          InitializeOpenGL();
-
-         battleMap.CreateTileMap();
       }
 
       public void InitializeOpenGL()
@@ -37,7 +35,7 @@ namespace Modern_Tactics
 
           gl.MatrixMode(MatrixMode.Modelview);
       }
-       
+
       private void openGLControl1_OpenGLDraw(object sender, PaintEventArgs e)
       {
           DrawGrid();
@@ -81,8 +79,8 @@ namespace Modern_Tactics
                   gl.Color(darkColor);
               }
               gl.Begin(OpenGL.GL_LINES);							// Start Drawing Verticle Cell Borders
-              gl.Vertex(0, h * 32, 0);// Left Side Of Horizontal Line
-              gl.Vertex(MapWidth * 32, h * 32, 0);// Right Side Of Horizontal Line
+              gl.Vertex(0, h * Globals.TILE_SIZE, 0);// Left Side Of Horizontal Line
+              gl.Vertex(MapWidth * Globals.TILE_SIZE, h * Globals.TILE_SIZE, 0);// Right Side Of Horizontal Line
               gl.End();
           }
           for (int v = 0; v < MapWidth; v++)
@@ -98,25 +96,10 @@ namespace Modern_Tactics
                   gl.Color(darkColor);
               }
               gl.Begin(OpenGL.GL_LINES);							// Start Drawing Verticle Cell Borders
-              gl.Vertex(v * 32, 0, 0);// Left Side Of Horizontal Line
-              gl.Vertex(v * 32, MapHeight * 32, 0);// Right Side Of Horizontal Line
+              gl.Vertex(v * Globals.TILE_SIZE, 0, 0);// Left Side Of Horizontal Line
+              gl.Vertex(v * Globals.TILE_SIZE, MapHeight * Globals.TILE_SIZE, 0);// Right Side Of Horizontal Line
               gl.End();
-          }
-
-          // temp thing to show tile map is building right
-          gl.Begin(OpenGL.GL_QUADS);
-          for (int y = 0; y < battleMap.mapHeight; y++)
-          {
-              for (int x = 0; x < battleMap.mapWidth; x++)
-              {
-                  gl.Vertex(battleMap.tileMap[y][x].x, battleMap.tileMap[y][x].y, 0);
-                  gl.Vertex(battleMap.tileMap[y][x].x + 32, battleMap.tileMap[y][x].y, 0);
-                  gl.Vertex(battleMap.tileMap[y][x].x, battleMap.tileMap[y][x].y + 32, 0);
-                  gl.Vertex(battleMap.tileMap[y][x].x + 32, battleMap.tileMap[y][x].y + 32, 0);
-              }
-          }
-          gl.End();
-
+          }          
       }
    }
 }
