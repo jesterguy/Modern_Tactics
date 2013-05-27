@@ -9,48 +9,50 @@ namespace Modern_Tactics
 {
 	class Camera
 	{
+		private int _x;
 		public int x
 		{
 			get
 			{
-				return x;
+				return _x;
 			}
 			set
 			{
 				if (value < 0)
 				{
-					this.x = 0;
+					_x = 0;
 				}
-				else if (this.x + this.w > tileMap.mapWidth)
+				else if (_x + this.w > tileMap.mapWidth)
 				{
-					this.x = tileMap.mapWidth - this.w;
+					_x = tileMap.mapWidth - this.w;
 				}
 				else
 				{
-					this.x = value;
+					_x = value;
 				}
 			}
 		}
 
+		private int _y;
 		public int y
 		{
 			get
 			{
-				return y;
+				return _y;
 			}
 			set
 			{
 				if (value < 0)
 				{
-					this.y = 0;
+					_y = 0;
 				}
-				else if (this.y + this.w > tileMap.mapHeight)
+				else if (_y + this.w > tileMap.mapHeight)
 				{
-					this.y = tileMap.mapHeight - this.h;
+					_y = tileMap.mapHeight - this.h;
 				}
 				else
 				{
-					this.y = value;
+					_y = value;
 				}
 			}
 		}
@@ -63,13 +65,14 @@ namespace Modern_Tactics
 
 		public Camera(ref TileMap tilemap, int winWidth = 715, int winHeight = 553)
 		{
+			this.tileMap = tilemap;
 			x = 0;
 			y = 0;
 			w = winWidth;
 			h = winHeight;
 
 			scrollSpeed = 20;
-			this.tileMap = tilemap;
+			
 		}
 
 		public void handleMouseMove(object sender, MouseEventArgs e)
