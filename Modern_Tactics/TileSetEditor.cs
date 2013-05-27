@@ -58,7 +58,7 @@ namespace Modern_Tactics
 				int height = tileSetImg.ToBitmap().Height;
 
 				//  Get the OpenGL object, for quick access.
-				SharpGL.OpenGL gl = this.openGLControl1.OpenGL;
+				SharpGL.OpenGL gl = this.openGLControl2.OpenGL;
 
 				gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
 				gl.LoadIdentity();
@@ -67,11 +67,10 @@ namespace Modern_Tactics
 				tileSetImg.Bind(gl);
 
 				gl.Begin(OpenGL.GL_QUADS);
-				// Front Face
-				gl.TexCoord(0.0f, 0.0f); gl.Vertex(0.0f, 0.0f, 1.0f);	// Bottom Left Of The Texture and Quad
+				gl.TexCoord(0.0f, 0.0f); gl.Vertex(0.0f, height, 1.0f);	// Bottom Left Of The Texture and Quad
 				gl.TexCoord(1.0f, 0.0f); gl.Vertex(width, height, 1.0f);	// Bottom Right Of The Texture and Quad
-				gl.TexCoord(1.0f, 1.0f); gl.Vertex(0.0f, height, 1.0f);	// Top Right Of The Texture and Quad
-				gl.TexCoord(0.0f, 1.0f); gl.Vertex(width, 0.0f, 1.0f);	// Top Left Of The Texture and Quad
+				gl.TexCoord(1.0f, 1.0f); gl.Vertex(width, 0.0f, 1.0f);	// Top Right Of The Texture and Quad
+				gl.TexCoord(0.0f, 1.0f); gl.Vertex(0.0f, 0.0f, 1.0f);	// Top Left Of The Texture and Quad
 				gl.End();
 			}
 		}
