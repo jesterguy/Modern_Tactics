@@ -51,7 +51,7 @@ namespace Modern_Tactics
           InitializeOpenGL();
       }
 
-      private void DrawGrid()
+      public void DrawGrid()
       {
           OpenGL gl = this.openGLControl1.OpenGL;
 

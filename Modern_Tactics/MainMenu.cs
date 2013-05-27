@@ -18,8 +18,6 @@ namespace Modern_Tactics
             InitializeComponent();
             this.Width = Int32.Parse(ConfigurationManager.AppSettings["WINDOW_WIDTH"]);
             this.Height = Int32.Parse(ConfigurationManager.AppSettings["WINDOW_HEIGHT"]);
-
-            this.textBox1.Visible = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -36,14 +34,15 @@ namespace Modern_Tactics
         {
             Application.Exit();
         }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-        }
-
+        
         private void button3_Click(object sender, EventArgs e)
         {
-            textBox1.Visible = !textBox1.Visible;
+            var frm = new MapEditor();
+            frm.Location = this.Location;
+            frm.StartPosition = FormStartPosition.Manual;
+            frm.FormClosing += delegate { this.Show(); };
+            frm.Show();
+            this.Hide();
         }
     }
 }
