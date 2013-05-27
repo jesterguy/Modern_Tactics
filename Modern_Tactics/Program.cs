@@ -9,7 +9,7 @@ namespace Modern_Tactics
 {
     public static class Globals
     {
-        public static int TILE_SIZE = 32;
+		public static int TILE_SIZE = 32;
     }
 
     static class Program

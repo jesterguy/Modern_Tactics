@@ -100,28 +100,36 @@ namespace Modern_Tactics
 	{
 		public int mapWidth;
 		public int mapHeight;
+		public int tileSize;
 		public int layers;
 		public int[][][] tile;
 
-		public TileMap()
-		{
-			mapWidth = 10;
-			mapHeight = 10;
-			layers = 1;
-			tile = new int[mapHeight][][];
-
-			CreateTileMap();
-		}
-		public TileMap(int Width, int Height) // change this to pass in map file
+		public TileMap(int Width = 10, int Height = 10, int tileSize = 32) // change this to pass in map file
 		{
 			mapWidth = Width;
 			mapHeight = Height;
+			this.tileSize = tileSize;
 
 			layers = 1;//will read this from map file
 
 			tile = new int[Height][][];
 
 			CreateTileMap();
+		}
+
+		public int pixelMapWidth
+		{
+			get
+			{
+				return mapWidth * tileSize;
+			}
+		}
+		public int pixelMapHeight
+		{
+			get
+			{
+				return mapHeight * tileSize;
+			}
 		}
 
 		public void CreateTileMap()

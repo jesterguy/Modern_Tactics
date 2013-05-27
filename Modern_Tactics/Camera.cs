@@ -77,8 +77,28 @@ namespace Modern_Tactics
 
 		public void handleMouseMove(object sender, MouseEventArgs e)
 		{
-			this.x = e.X;
-			this.y = e.Y;
+			int xDir = 0, yDir = 0;
+			int scrollDistance = 20;
+
+			if (e.X < scrollDistance)
+			{
+				xDir = -1;
+			}
+			if (e.X > tileMap.pixelMapWidth - scrollDistance)
+			{
+				xDir = 1;
+			}
+			if (e.Y < scrollDistance)
+			{
+				yDir = -1;
+			}
+			if (e.Y > tileMap.pixelMapHeight - scrollDistance)
+			{
+				yDir = 1;
+			}
+
+			this.x += xDir * scrollSpeed;
+			this.y += yDir * scrollSpeed;
 		}
 	}
 }

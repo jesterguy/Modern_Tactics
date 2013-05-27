@@ -12,15 +12,18 @@ namespace Modern_Tactics
 	public partial class BattleScreen : Form
 	{
 		//temp battleMap til i have something to load saved maps
-		BattleMap battleMap = new BattleMap();
+		BattleMap battleMap;
 		Camera camera;
 
 		public BattleScreen()
 		{
+			battleMap = new BattleMap();
 			camera = new Camera(ref battleMap.tileMap);
 			InitializeComponent();
 			openGLControl1.DrawFPS = true;
 			openGLControl1.MouseMove += camera.handleMouseMove;
+			openGLControl1.Resize += openGLControl1_Resized;
+
 			InitializeOpenGL();
 		}
 
@@ -58,8 +61,6 @@ namespace Modern_Tactics
 		{
 			OpenGL gl = this.openGLControl1.OpenGL;
 
-			//find a way to run only on resize
-			InitializeOpenGL();
 
 			gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
 			gl.LoadIdentity();
@@ -82,8 +83,8 @@ namespace Modern_Tactics
 					gl.Color(darkColor);
 				}
 				gl.Begin(OpenGL.GL_LINES);							// Start Drawing Verticle Cell Borders
-				gl.Vertex(0, h * Globals.TILE_SIZE, 0);// Left Side Of Horizontal Line
-				gl.Vertex(MapWidth * Globals.TILE_SIZE, h * Globals.TILE_SIZE, 0);// Right Side Of Horizontal Line
+					gl.Vertex(0 - camera.x, h * battleMap.tileSize - camera.y, 0);// Left Side Of Horizontal Line
+					gl.Vertex(MapWidth * battleMap.tileSize - camera.x, (h * battleMap.tileSize) - camera.y, 0);// Right Side Of Horizontal Line
 				gl.End();
 			}
 			for (int v = 0; v < MapWidth; v++)
@@ -99,8 +100,8 @@ namespace Modern_Tactics
 					gl.Color(darkColor);
 				}
 				gl.Begin(OpenGL.GL_LINES);							// Start Drawing Verticle Cell Borders
-				gl.Vertex(v * Globals.TILE_SIZE, 0, 0);// Left Side Of Horizontal Line
-				gl.Vertex(v * Globals.TILE_SIZE, MapHeight * Globals.TILE_SIZE, 0);// Right Side Of Horizontal Line
+				gl.Vertex(v * battleMap.tileSize - camera.x, 0 - camera.y, 0);// Left Side Of Horizontal Line
+				gl.Vertex(v * battleMap.tileSize - camera.x, (MapHeight * battleMap.tileSize) - camera.y, 0);// Right Side Of Horizontal Line
 				gl.End();
 			}
 		}
