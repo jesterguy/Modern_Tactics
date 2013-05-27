@@ -1,6 +1,6 @@
 ﻿namespace Modern_Tactics
 {
-    partial class Form3
+    partial class TestingForm
     {
         /// <summary>
         /// Required designer variable.

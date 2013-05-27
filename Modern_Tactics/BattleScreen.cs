@@ -9,13 +9,18 @@ using System.Configuration;
 
 namespace Modern_Tactics
 {
-   public partial class Form2 : Form
+   public partial class BattleScreen : Form
    {
-      public Form2()
+       //temp battleMap til i have something to load saved maps
+       BattleMap battleMap = new BattleMap();
+
+      public BattleScreen()
       {
          InitializeComponent();
          this.openGLControl1.DrawFPS = true;
          InitializeOpenGL();
+
+         battleMap.CreateTileMap();
       }
 
       public void InitializeOpenGL()
@@ -82,6 +87,21 @@ namespace Modern_Tactics
              gl.Vertex(v * 32, MapHeight * 32, 0);// Right Side Of Horizontal Line
              gl.End();
          }
+
+          // temp thing to show tile map is building right
+         gl.Begin(OpenGL.GL_QUADS);
+         for (int y = 0; y < battleMap.mapHeight; y++)
+         {
+             for (int x = 0; x < battleMap.mapWidth; x++)
+             {
+                 gl.Vertex(battleMap.tileMap[y][x].x, battleMap.tileMap[y][x].y, 0);
+                 gl.Vertex(battleMap.tileMap[y][x].x + 32, battleMap.tileMap[y][x].y, 0);
+                 gl.Vertex(battleMap.tileMap[y][x].x, battleMap.tileMap[y][x].y + 32, 0);
+                 gl.Vertex(battleMap.tileMap[y][x].x + 32, battleMap.tileMap[y][x].y + 32, 0);
+             }
+         }
+         gl.End();
+
       }
 
       private void openGLControl1_OpenGLInitialized(object sender, EventArgs e)

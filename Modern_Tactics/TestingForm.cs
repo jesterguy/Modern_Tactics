@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace Modern_Tactics
 {
-    public partial class Form3 : Form
+    public partial class TestingForm : Form
     {
-        public Form3()
+        public TestingForm()
         {
             InitializeComponent();
         }

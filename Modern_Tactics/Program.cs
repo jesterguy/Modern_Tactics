@@ -17,8 +17,7 @@ namespace Modern_Tactics
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new MainMenu());
-            Application.Run(new Form2());
+            Application.Run(new MainMenu());
         }
     }
 }

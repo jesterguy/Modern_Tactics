@@ -1,6 +1,6 @@
 ﻿namespace Modern_Tactics
 {
-    partial class Form2
+    partial class BattleScreen
     {
         /// <summary>
         /// Required designer variable.
