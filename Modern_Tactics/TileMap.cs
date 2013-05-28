@@ -104,7 +104,7 @@ namespace Modern_Tactics
 		public int layers;
 		public int[][][] tile;
 
-		public TileMap(int Width = 10, int Height = 10, int tileSize = 32) // change this to pass in map file
+		public TileMap(int Width = 100, int Height = 100, int tileSize = 32) // change this to pass in map file
 		{
 			mapWidth = Width;
 			mapHeight = Height;

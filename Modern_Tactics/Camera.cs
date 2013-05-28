@@ -24,7 +24,7 @@ namespace Modern_Tactics
 				}
 				else if (_x + this.w > tileMap.mapWidth)
 				{
-					_x = tileMap.mapWidth - this.w;
+					_x = tileMap.pixelMapWidth - this.w;
 				}
 				else
 				{
@@ -48,7 +48,7 @@ namespace Modern_Tactics
 				}
 				else if (_y + this.w > tileMap.mapHeight)
 				{
-					_y = tileMap.mapHeight - this.h;
+					_y = tileMap.pixelMapHeight - this.h;
 				}
 				else
 				{
@@ -84,7 +84,7 @@ namespace Modern_Tactics
 			{
 				xDir = -1;
 			}
-			if (e.X > tileMap.pixelMapWidth - scrollDistance)
+			if (e.X > this.x + this.w - scrollDistance)
 			{
 				xDir = 1;
 			}
@@ -92,13 +92,37 @@ namespace Modern_Tactics
 			{
 				yDir = -1;
 			}
-			if (e.Y > tileMap.pixelMapHeight - scrollDistance)
+			if (e.Y > this.y + this.h - scrollDistance)
 			{
 				yDir = 1;
 			}
 
-			this.x += xDir * scrollSpeed;
-			this.y += yDir * scrollSpeed;
+			if (xDir != 0)
+			{
+				this.x += xDir * scrollSpeed;
+			}
+			if (yDir != 0)
+			{
+				this.y += yDir * scrollSpeed;
+			}
+
+			//Keep camera on map plz
+			//if (this.x < 0)
+			//{
+			//	this.x = 0;
+			//}
+			//if (this.y < 0)
+			//{
+			//	this.y = 0;
+			//}
+			//if (this.x + this.w > tileMap.pixelMapWidth)
+			//{
+			//	this.x = this.x - this.w;
+			//}
+			//if (this.y + this.h > tileMap.pixelMapHeight)
+			//{
+			//	this.y = this.y - this.h;
+			//}
 		}
 	}
 }
