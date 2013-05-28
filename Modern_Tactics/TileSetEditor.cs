@@ -41,7 +41,7 @@ namespace Modern_Tactics
 		{
 			gl.Viewport(0, 0, width, height);
 
-			gl.ClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+			gl.Color(1.0, 1.0, 1.0, 1.0); // reset gl color
 
 			gl.MatrixMode(MatrixMode.Projection);
 			gl.LoadIdentity();
@@ -49,7 +49,7 @@ namespace Modern_Tactics
 
 			gl.MatrixMode(MatrixMode.Modelview);
 
-			gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
+			gl.Clear(OpenGL.GL_DEPTH_BUFFER_BIT);
 			gl.LoadIdentity();
 		}
 
