@@ -22,7 +22,7 @@ namespace Modern_Tactics
 				{
 					_x = 0;
 				}
-				else if (_x + this.w > tileMap.mapWidth)
+				else if (_x + this.w + value > tileMap.pixelMapWidth)
 				{
 					_x = tileMap.pixelMapWidth - this.w;
 				}
@@ -46,7 +46,7 @@ namespace Modern_Tactics
 				{
 					_y = 0;
 				}
-				else if (_y + this.w > tileMap.mapHeight)
+				else if (_y + this.h + value > tileMap.pixelMapHeight)
 				{
 					_y = tileMap.pixelMapHeight - this.h;
 				}
