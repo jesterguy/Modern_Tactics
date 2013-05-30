@@ -15,14 +15,23 @@ namespace Modern_Tactics
 		BattleMap battleMap;
 		Camera camera;
 
+		Timer timer = new Timer();
+
 		public BattleScreen()
 		{
 			battleMap = new BattleMap();
 			camera = new Camera(ref battleMap.tileMap);
+
 			InitializeComponent();
 			openGLControl1.DrawFPS = true;
 			openGLControl1.MouseMove += camera.handleMouseMove;
 			openGLControl1.Resize += openGLControl1_Resized;
+
+			timer.Tick += new EventHandler(timer_Tick);
+
+			timer.Interval = 1;
+			timer.Enabled = true;
+			timer.Start();
 
 			ResetOpenGL();
 		}
@@ -40,6 +49,11 @@ namespace Modern_Tactics
 			gl.Ortho(0, openGLControl1.Width, openGLControl1.Height, 0, -10, 10);
 
 			gl.MatrixMode(MatrixMode.Modelview);
+		}
+
+		void timer_Tick(object sender, EventArgs e)
+		{
+			camera.moveCamera();
 		}
 
 		private void openGLControl1_OpenGLDraw(object sender, PaintEventArgs e)

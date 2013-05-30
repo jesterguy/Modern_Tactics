@@ -85,6 +85,7 @@
     <Compile Include="MapEditor.Designer.cs">
       <DependentUpon>MapEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sprite.cs" />
     <Compile Include="TestingForm.cs">
       <SubType>Form</SubType>
     </Compile>

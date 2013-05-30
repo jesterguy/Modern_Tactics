@@ -63,6 +63,8 @@ namespace Modern_Tactics
 
 		int scrollSpeed;
 
+		private int xDir = 0, yDir = 0;
+
 		public Camera(ref TileMap tilemap, int winWidth = 715, int winHeight = 553)
 		{
 			this.tileMap = tilemap;
@@ -75,28 +77,8 @@ namespace Modern_Tactics
 			
 		}
 
-		public void handleMouseMove(object sender, MouseEventArgs e)
+		public void moveCamera()
 		{
-			int xDir = 0, yDir = 0;
-			int scrollDistance = 20;
-
-			if (e.X < scrollDistance)
-			{
-				xDir = -1;
-			}
-			if (e.X > this.x + this.w - scrollDistance)
-			{
-				xDir = 1;
-			}
-			if (e.Y < scrollDistance)
-			{
-				yDir = -1;
-			}
-			if (e.Y > this.y + this.h - scrollDistance)
-			{
-				yDir = 1;
-			}
-
 			if (xDir != 0)
 			{
 				this.x += xDir * scrollSpeed;
@@ -105,24 +87,36 @@ namespace Modern_Tactics
 			{
 				this.y += yDir * scrollSpeed;
 			}
+		}
 
-			//Keep camera on map plz
-			//if (this.x < 0)
-			//{
-			//	this.x = 0;
-			//}
-			//if (this.y < 0)
-			//{
-			//	this.y = 0;
-			//}
-			//if (this.x + this.w > tileMap.pixelMapWidth)
-			//{
-			//	this.x = this.x - this.w;
-			//}
-			//if (this.y + this.h > tileMap.pixelMapHeight)
-			//{
-			//	this.y = this.y - this.h;
-			//}
+		public void handleMouseMove(object sender, MouseEventArgs e)
+		{
+			int scrollDistance = 20;
+
+			if (e.X < scrollDistance)
+			{
+				xDir = -1;
+			}
+			else if (e.X > this.x + this.w - scrollDistance)
+			{
+				xDir = 1;
+			}
+			else
+			{
+				xDir = 0;
+			}
+			if (e.Y < scrollDistance)
+			{
+				yDir = -1;
+			}
+			else if (e.Y > this.y + this.h - scrollDistance)
+			{
+				yDir = 1;
+			}
+			else
+			{
+				yDir = 0;
+			}
 		}
 	}
 }
