@@ -187,7 +187,14 @@ namespace Modern_Tactics
 				SharpGL.OpenGL gl = this.openGLControl2.OpenGL;
 
 				ResetOpenGL(gl, this.openGLControl2.Width,this.openGLControl2.Height);
-				
+				int[] widthArray = new int[1];
+				gl.GetTexLevelParameter(OpenGL.GL_TEXTURE_2D, 0, OpenGL.GL_TEXTURE_WIDTH, widthArray);
+				width = widthArray[0];
+
+				int[] heightArray = new int[1];
+				gl.GetTexLevelParameter(OpenGL.GL_TEXTURE_2D, 0, OpenGL.GL_TEXTURE_HEIGHT, heightArray);
+				height = heightArray[0];
+
 				//  Bind the texture.
 				tileSetImg.Bind(gl); // commenting this out doesnt change anything but it should.why?
 
