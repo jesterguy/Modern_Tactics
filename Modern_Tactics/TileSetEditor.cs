@@ -41,7 +41,12 @@ namespace Modern_Tactics
 			SharpGL.OpenGL gl2 = this.openGLControl2.OpenGL;
 			//  A bit of extra initialisation here, we have to enable textures.
 			gl1.Enable(OpenGL.GL_TEXTURE_2D);
-			gl2.Enable(OpenGL.GL_TEXTURE_2D);
+			gl2.Enable(OpenGL.GL_TEXTURE_2D); 
+
+			//transparancy crap needs to work at somepoint
+			//gl1.Enable(OpenGL.GL_BLEND);
+			//gl1.BlendFunc(OpenGL.GL_SRC_ALPHA, OpenGL.GL_ONE_MINUS_SRC_ALPHA);
+			//gl1.TexImage2D(OpenGL.GL_TEXTURE_2D, 0, OpenGL.GL_RGBA, imgWidth, imgHeight, 0, OpenGL.GL_RGBA, OpenGL.GL_UNSIGNED_BYTE,);
 
 			openGLControl1.MouseClick += HandleMouseClick1;
 			openGLControl2.MouseClick += HandleMouseClick2;
@@ -49,6 +54,12 @@ namespace Modern_Tactics
 			//openGLControl2.MouseUp += HandleMouseUp;
 
 			tileSet.ChangeTileSetSize(100);
+
+			hScrollBar1.Visible = false;
+			vScrollBar1.Visible = false;
+
+			hScrollBar2.Visible = false;
+			vScrollBar2.Visible = false;
 		}
 		public void ResetOpenGL(SharpGL.OpenGL gl,int width,int height)
 		{
@@ -99,20 +110,22 @@ namespace Modern_Tactics
 
 					tileSet.tile[tileID].tileSprite.Add( tileSet.tileSheet.CreateSprite(control2SelectionX * 32, control2SelectionY * 32, 32, 32) );
 				}
+
+				listBox1.DataSource = null;
+				listBox1.DataSource = tileSet.tile[tileID].tileSprite;
+
 				if (e.Button == MouseButtons.Right)
 				{
 					int index = listBox1.SelectedIndex;
 					tileSet.tile[tileID].tileSprite[index] = tileSet.tileSheet.CreateSprite(control2SelectionX * 32, control2SelectionY * 32, 32, 32);
 				}
 				propertyGrid1.SelectedObject = tileSet.tile[tileID];
-				listBox1.DataSource = null;
-				listBox1.DataSource = tileSet.tile[tileID].tileSprite;
 			}
 		}
 		private void HandleMouseClick2(object sender, MouseEventArgs e)
 		{
-			control2SelectionX = e.X / 32;
-			control2SelectionY = e.Y / 32;
+			control2SelectionX = (e.X + hScrollBar2.Value) / 32;
+			control2SelectionY = (e.Y + vScrollBar2.Value) / 32;
 			control2SelectionW = (32*control2SelectionX) + 32;
 			control2SelectionH = (32*control2SelectionY) + 32;
 		}
@@ -184,7 +197,7 @@ namespace Modern_Tactics
 				SharpGL.OpenGL gl = this.openGLControl2.OpenGL;
 
 				ResetOpenGL(gl, this.openGLControl2.Width,this.openGLControl2.Height);
-
+				gl.Translate(-hScrollBar2.Value, -vScrollBar2.Value,0);
 				//  Bind the texture.
 				tileSetImg.Bind(gl); // commenting this out doesnt change anything but it should.why?
 
@@ -249,6 +262,25 @@ namespace Modern_Tactics
 				imgWidth = widthArray[0];
 				openGLControl2.OpenGL.GetTexLevelParameter(OpenGL.GL_TEXTURE_2D, 0, OpenGL.GL_TEXTURE_HEIGHT, heightArray);
 				imgHeight = heightArray[0];
+
+				if (widthArray[0] > openGLControl2.Width)
+				{
+					hScrollBar2.Visible = true;
+					hScrollBar2.Maximum = widthArray[0] - openGLControl2.Width;
+				}
+				else
+				{
+					vScrollBar2.Visible = false;
+				}
+				if (heightArray[0] > openGLControl2.Width)
+				{
+					vScrollBar2.Visible = true;
+					vScrollBar2.Maximum = heightArray[0] - openGLControl2.Height;
+				}
+				else
+				{
+					vScrollBar2.Visible = false;
+				}
 
 				tileSetImgLoaded = true;
 			}

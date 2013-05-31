@@ -41,6 +41,10 @@
 			this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
+			this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
+			this.hScrollBar2 = new System.Windows.Forms.HScrollBar();
+			this.vScrollBar2 = new System.Windows.Forms.VScrollBar();
 			((System.ComponentModel.ISupportInitialize)(this.openGLControl1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.openGLControl2)).BeginInit();
 			this.menuStrip2.SuspendLayout();
@@ -57,7 +61,7 @@
 			this.openGLControl1.Location = new System.Drawing.Point(12, 27);
 			this.openGLControl1.Name = "openGLControl1";
 			this.openGLControl1.RenderContextType = SharpGL.RenderContextType.FBO;
-			this.openGLControl1.Size = new System.Drawing.Size(507, 254);
+			this.openGLControl1.Size = new System.Drawing.Size(486, 232);
 			this.openGLControl1.TabIndex = 0;
 			this.openGLControl1.Load += new System.EventHandler(this.openGLControl1_Load);
 			// 
@@ -72,7 +76,7 @@
 			this.openGLControl2.Location = new System.Drawing.Point(12, 287);
 			this.openGLControl2.Name = "openGLControl2";
 			this.openGLControl2.RenderContextType = SharpGL.RenderContextType.DIBSection;
-			this.openGLControl2.Size = new System.Drawing.Size(507, 204);
+			this.openGLControl2.Size = new System.Drawing.Size(486, 195);
 			this.openGLControl2.TabIndex = 2;
 			this.openGLControl2.Load += new System.EventHandler(this.openGLControl2_Load);
 			// 
@@ -168,11 +172,43 @@
 			this.closeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.closeToolStripMenuItem.Text = "Close";
 			// 
+			// vScrollBar1
+			// 
+			this.vScrollBar1.Location = new System.Drawing.Point(501, 28);
+			this.vScrollBar1.Name = "vScrollBar1";
+			this.vScrollBar1.Size = new System.Drawing.Size(17, 231);
+			this.vScrollBar1.TabIndex = 9;
+			// 
+			// hScrollBar1
+			// 
+			this.hScrollBar1.Location = new System.Drawing.Point(12, 262);
+			this.hScrollBar1.Name = "hScrollBar1";
+			this.hScrollBar1.Size = new System.Drawing.Size(486, 19);
+			this.hScrollBar1.TabIndex = 10;
+			// 
+			// hScrollBar2
+			// 
+			this.hScrollBar2.Location = new System.Drawing.Point(12, 485);
+			this.hScrollBar2.Name = "hScrollBar2";
+			this.hScrollBar2.Size = new System.Drawing.Size(486, 17);
+			this.hScrollBar2.TabIndex = 11;
+			// 
+			// vScrollBar2
+			// 
+			this.vScrollBar2.Location = new System.Drawing.Point(501, 287);
+			this.vScrollBar2.Name = "vScrollBar2";
+			this.vScrollBar2.Size = new System.Drawing.Size(17, 195);
+			this.vScrollBar2.TabIndex = 12;
+			// 
 			// TileSetEditor
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(666, 503);
+			this.Controls.Add(this.vScrollBar2);
+			this.Controls.Add(this.hScrollBar2);
+			this.Controls.Add(this.hScrollBar1);
+			this.Controls.Add(this.vScrollBar1);
 			this.Controls.Add(this.button3);
 			this.Controls.Add(this.button2);
 			this.Controls.Add(this.listBox1);
@@ -207,5 +243,9 @@
 		private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
+		private System.Windows.Forms.VScrollBar vScrollBar1;
+		private System.Windows.Forms.HScrollBar hScrollBar1;
+		private System.Windows.Forms.HScrollBar hScrollBar2;
+		private System.Windows.Forms.VScrollBar vScrollBar2;
     }
 }
