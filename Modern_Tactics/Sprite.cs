@@ -27,16 +27,16 @@ namespace Modern_Tactics
 
 	public class SpriteSheet
 	{
-		private int texWidth;
-		private int texHeight;
+		public int texWidth;
+		public int texHeight;
 
 		public Texture tex;
 
 		public SpriteSheet()
 		{
 			tex = new Texture();
-			texWidth = 256;
-			texHeight = 480;
+			texWidth = 0;
+			texHeight = 0;
 		}
 		public SpriteSheet(Texture texture)
 		{

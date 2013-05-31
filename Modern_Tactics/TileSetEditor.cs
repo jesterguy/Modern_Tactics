@@ -18,6 +18,7 @@ namespace Modern_Tactics
 	public partial class TileSetEditor : Form
 	{
 		Texture tileSetImg = new Texture();
+		private int imgWidth, imgHeight;
 
 		private bool tileSetImgLoaded = false;
 
@@ -97,7 +98,6 @@ namespace Modern_Tactics
 					tileSet.tile[tileID] = new Tile();
 
 					tileSet.tile[tileID].tileSprite.Add( tileSet.tileSheet.CreateSprite(control2SelectionX * 32, control2SelectionY * 32, 32, 32) );
-					//tileSet.tile[tileID].layers = 1;
 				}
 				if (e.Button == MouseButtons.Right)
 				{
@@ -180,29 +180,19 @@ namespace Modern_Tactics
 		{
 			if (tileSetImgLoaded)
 			{
-				int width = 256;// tileSetImg.ToBitmap().Width;
-				int height = 480;//tileSetImg.ToBitmap().Height;
-
 				//  Get the OpenGL object, for quick access.
 				SharpGL.OpenGL gl = this.openGLControl2.OpenGL;
 
 				ResetOpenGL(gl, this.openGLControl2.Width,this.openGLControl2.Height);
-				int[] widthArray = new int[1];
-				gl.GetTexLevelParameter(OpenGL.GL_TEXTURE_2D, 0, OpenGL.GL_TEXTURE_WIDTH, widthArray);
-				width = widthArray[0];
-
-				int[] heightArray = new int[1];
-				gl.GetTexLevelParameter(OpenGL.GL_TEXTURE_2D, 0, OpenGL.GL_TEXTURE_HEIGHT, heightArray);
-				height = heightArray[0];
 
 				//  Bind the texture.
 				tileSetImg.Bind(gl); // commenting this out doesnt change anything but it should.why?
 
 				gl.Begin(OpenGL.GL_QUADS);
 				gl.TexCoord(0.0f, 0.0f); gl.Vertex(0.0f, 0.0f, 0.0f);	// Bottom Left Of The Texture and Quad
-				gl.TexCoord(1.0f, 0.0f); gl.Vertex(width, 0.0f, 0.0f);	// Bottom Right Of The Texture and Quad
-				gl.TexCoord(1.0f, 1.0f); gl.Vertex(width, height, 0.0f);	// Top Right Of The Texture and Quad
-				gl.TexCoord(0.0f, 1.0f); gl.Vertex(0.0f, height, 0.0f);	// Top Left Of The Texture and Quad
+				gl.TexCoord(1.0f, 0.0f); gl.Vertex(imgWidth, 0.0f, 0.0f);	// Bottom Right Of The Texture and Quad
+				gl.TexCoord(1.0f, 1.0f); gl.Vertex(imgWidth, imgHeight, 0.0f);	// Top Right Of The Texture and Quad
+				gl.TexCoord(0.0f, 1.0f); gl.Vertex(0.0f, imgHeight, 0.0f);	// Top Left Of The Texture and Quad
 				gl.End();
 
 				//Draw Selection
@@ -214,18 +204,18 @@ namespace Modern_Tactics
 				gl.End();
 
 				//DrawGrid
-				for (int y = 0; y < width / 32;y++ )
+				for (int y = 0; y < imgWidth / 32; y++)
 				{
 					gl.Begin(OpenGL.GL_LINES);							// Start Drawing Verticle Cell Borders
 					gl.Vertex(y * 32, 0, 1);// Left Side Of Horizontal Line
-					gl.Vertex(y * 32, height, 1);// Right Side Of Horizontal Line
+					gl.Vertex(y * 32, imgHeight, 1);// Right Side Of Horizontal Line
 					gl.End();
 				}
-				for(int x=0;x < height / 32;x++)
+				for (int x = 0; x < imgHeight / 32; x++)
 				{
 					gl.Begin(OpenGL.GL_LINES);							// Start Drawing Verticle Cell Borders
 					gl.Vertex(0,x*32 , 1);// Left Side Of Horizontal Line
-					gl.Vertex(width,x*32 , 1);// Right Side Of Horizontal Line
+					gl.Vertex(imgWidth, x * 32, 1);// Right Side Of Horizontal Line
 					gl.End();
 				}
 			}
@@ -248,6 +238,18 @@ namespace Modern_Tactics
 				openGLControl1.Invalidate();
 				openGLControl2.Invalidate();
 
+				int[] widthArray = new int[1];
+				int[] heightArray = new int[1];
+				openGLControl1.OpenGL.GetTexLevelParameter(OpenGL.GL_TEXTURE_2D, 0, OpenGL.GL_TEXTURE_WIDTH, widthArray);
+				tileSet.tileSheet.texWidth = widthArray[0];
+				openGLControl1.OpenGL.GetTexLevelParameter(OpenGL.GL_TEXTURE_2D, 0, OpenGL.GL_TEXTURE_HEIGHT, heightArray);
+				tileSet.tileSheet.texHeight = heightArray[0];
+
+				openGLControl2.OpenGL.GetTexLevelParameter(OpenGL.GL_TEXTURE_2D, 0, OpenGL.GL_TEXTURE_WIDTH, widthArray);
+				imgWidth = widthArray[0];
+				openGLControl2.OpenGL.GetTexLevelParameter(OpenGL.GL_TEXTURE_2D, 0, OpenGL.GL_TEXTURE_HEIGHT, heightArray);
+				imgHeight = heightArray[0];
+
 				tileSetImgLoaded = true;
 			}
 		}
@@ -260,6 +262,14 @@ namespace Modern_Tactics
 		private void button2_Click(object sender, EventArgs e)
 		{
 			tileSet.tile[selectedTile].tileSprite.Add(tileSet.tileSheet.CreateSprite(control2SelectionX * 32, control2SelectionY * 32, 32, 32));
+			listBox1.DataSource = null;
+			listBox1.DataSource = tileSet.tile[selectedTile].tileSprite;
+		}
+
+		private void button3_Click(object sender, EventArgs e)
+		{
+			int index = listBox1.SelectedIndex;
+			tileSet.tile[selectedTile].tileSprite.RemoveAt(index);
 			listBox1.DataSource = null;
 			listBox1.DataSource = tileSet.tile[selectedTile].tileSprite;
 		}

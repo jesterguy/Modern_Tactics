@@ -32,8 +32,6 @@ namespace Modern_Tactics
 		private int _destroyedTileID;
 		public int destroyedTileId { get { return _destroyedTileID; } set { _destroyedTileID = value; } }
 		
-		//public Sprite[] tileSprite;//set this to an array of sprite for layers
-		//public int layers;
 		public List<Sprite> tileSprite = new List<Sprite>();
 
 		public Tile()
@@ -43,10 +41,6 @@ namespace Modern_Tactics
 			defenseValue = 0;
 			sensorCost = 0;
 			moveCost = 0;
-
-			//layers = 0;
-			//tileSprite = new Sprite[1];
-			//tileSprite[0] = new Sprite();
 		}
 	}
 

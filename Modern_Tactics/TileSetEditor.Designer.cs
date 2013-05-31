@@ -37,8 +37,13 @@
 			this.listBox1 = new System.Windows.Forms.ListBox();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
+			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.openGLControl1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.openGLControl2)).BeginInit();
+			this.menuStrip2.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// openGLControl1
@@ -74,9 +79,9 @@
 			// button1
 			// 
 			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.button1.Location = new System.Drawing.Point(522, 467);
+			this.button1.Location = new System.Drawing.Point(525, 467);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(104, 23);
+			this.button1.Size = new System.Drawing.Size(129, 23);
 			this.button1.TabIndex = 3;
 			this.button1.Text = "Load Image";
 			this.button1.UseVisualStyleBackColor = true;
@@ -91,13 +96,15 @@
 			// 
 			this.propertyGrid1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.propertyGrid1.Location = new System.Drawing.Point(522, 138);
+			this.propertyGrid1.Location = new System.Drawing.Point(522, 89);
 			this.propertyGrid1.Name = "propertyGrid1";
-			this.propertyGrid1.Size = new System.Drawing.Size(144, 323);
+			this.propertyGrid1.Size = new System.Drawing.Size(144, 372);
 			this.propertyGrid1.TabIndex = 4;
 			// 
 			// menuStrip2
 			// 
+			this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
 			this.menuStrip2.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip2.Name = "menuStrip2";
 			this.menuStrip2.Size = new System.Drawing.Size(666, 24);
@@ -119,7 +126,7 @@
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(61, 23);
 			this.button2.TabIndex = 7;
-			this.button2.Text = "button2";
+			this.button2.Text = "Add";
 			this.button2.UseVisualStyleBackColor = true;
 			this.button2.Click += new System.EventHandler(this.button2_Click);
 			// 
@@ -129,8 +136,37 @@
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(60, 23);
 			this.button3.TabIndex = 8;
-			this.button3.Text = "button3";
+			this.button3.Text = "Delete";
 			this.button3.UseVisualStyleBackColor = true;
+			this.button3.Click += new System.EventHandler(this.button3_Click);
+			// 
+			// fileToolStripMenuItem
+			// 
+			this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newToolStripMenuItem,
+            this.saveToolStripMenuItem,
+            this.closeToolStripMenuItem});
+			this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+			this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+			this.fileToolStripMenuItem.Text = "File";
+			// 
+			// newToolStripMenuItem
+			// 
+			this.newToolStripMenuItem.Name = "newToolStripMenuItem";
+			this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.newToolStripMenuItem.Text = "New";
+			// 
+			// saveToolStripMenuItem
+			// 
+			this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+			this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.saveToolStripMenuItem.Text = "Save";
+			// 
+			// closeToolStripMenuItem
+			// 
+			this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
+			this.closeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.closeToolStripMenuItem.Text = "Close";
 			// 
 			// TileSetEditor
 			// 
@@ -149,6 +185,8 @@
 			this.Text = "TileSetEditor";
 			((System.ComponentModel.ISupportInitialize)(this.openGLControl1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.openGLControl2)).EndInit();
+			this.menuStrip2.ResumeLayout(false);
+			this.menuStrip2.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -165,5 +203,9 @@
 		private System.Windows.Forms.ListBox listBox1;
 		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.Button button3;
+		private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
     }
 }
