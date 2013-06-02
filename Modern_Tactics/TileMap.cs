@@ -47,52 +47,49 @@ namespace Modern_Tactics
 	public class TileSet
 	{
 		public string tileSetName;
-		public int tileSetSize;
-		public Tile[] tile;
+		public List<Tile> tile;
 		public SpriteSheet tileSheet;
 
 		public TileSet()
 		{
 			tileSetName = "My first tile set";
-			tile = new Tile[1];
-			tileSheet = new SpriteSheet();
-		}
-		TileSet(int size)
-		{
-			tileSetName = "Wish I had a real name";
-			tileSetSize = size;
-			tile = new Tile[tileSetSize];
+			tile = new List<Tile>();
 			tileSheet = new SpriteSheet();
 		}
 
 		public void ChangeTileSetSize(int size)
 		{
-			Tile[] tmpSet = new Tile[size];
-
 			int loop;
-			if (tile.GetLength(0) > size)
+			bool add;
+			if (tile.Count > size)
 			{
-				loop = size;
+				loop = tile.Count - size;
+				add = false;
 			}
 			else
 			{
-				loop = tile.GetLength(0);
+				loop = size - tile.Count;
+				add = true;
 			}
 
 			for (int i = 0; i < loop; i++)
 			{
-				tmpSet[i] = tile[i];
+				if (add)
+				{
+					tile.Add(new Tile());
+				}
+				else
+				{
+					tile.RemoveAt(tile.Count - 1);
+				}
 			}
-			tileSetSize = size;
-			tile = tmpSet;
 		}
 
 		public void LoadTileSet()//pass in tileSet file
 		{
-			tileSetSize = 1;//load size
-			tile = new Tile[tileSetSize];
+			tile = new List<Tile>();
 
-			for (int i = 0; i < tileSetSize; i++)
+			for (int i = 0; i < tile.Count; i++)
 			{
 				//load all tiles from map file
 				//tile[i].defenseValue = mapfile.tile[i].defenseValue;
@@ -105,17 +102,16 @@ namespace Modern_Tactics
 		public int mapWidth;
 		public int mapHeight;
 		public int tileSize;
-		public int layers;
 		public int[][][] tile;
+
+		public List<TileSet> tileSet;
 
 		public TileMap(int Width = 100, int Height = 100, int tileSize = 32) // change this to pass in map file
 		{
 			mapWidth = Width;
 			mapHeight = Height;
 			this.tileSize = tileSize;
-
-			layers = 1;//will read this from map file
-
+			tileSet = new List<TileSet>();
 			tile = new int[Height][][];
 
 			CreateTileMap();
@@ -151,7 +147,5 @@ namespace Modern_Tactics
 				}
 			}
 		}
-
-		//end TileMap class
 	}
 }

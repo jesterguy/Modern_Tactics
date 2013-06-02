@@ -14,6 +14,8 @@ namespace Modern_Tactics
 {
     public partial class MapEditor : Form
     {
+		private TileMap tileMap;
+
         public MapEditor()
         {
             InitializeComponent();

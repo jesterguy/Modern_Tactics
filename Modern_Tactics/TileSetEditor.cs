@@ -24,6 +24,8 @@ namespace Modern_Tactics
 
 		TileSet tileSet = new TileSet();
 
+		private int tileSize = 32;
+
 		private int control1SelectionX = 0;
 		private int control1SelectionY = 0;
 		private int selectedTile = 0;
@@ -79,55 +81,62 @@ namespace Modern_Tactics
 
 		private void HandleMouseClick1(object sender, MouseEventArgs e)
 		{
-			control1SelectionX = e.X / 32;
-			control1SelectionY = e.Y / 32;
+			control1SelectionX = e.X / tileSize;
+			control1SelectionY = e.Y / tileSize;
 
 			int x = 0;
 			int y = 0;
 			int rows = 1;
 			int tileID = -1;
-			for (int i = 0; i < tileSet.tileSetSize; i++)
+			for (int i = 0; i < tileSet.tile.Count; i++)
 			{
-				if (x + 32 > this.openGLControl1.Width)
+				if (x + tileSize > this.openGLControl1.Width)
 				{
 					x = 0;
-					y += 32;
+					y += tileSize;
 					rows++;
 				}
-				if (x / 32 == control1SelectionX && y / 32 == control1SelectionY)
+				if (x / tileSize == control1SelectionX && y / tileSize == control1SelectionY)
 				{
 					tileID = i;
 					selectedTile = i;
 				}
-				x += 32;
+				x += tileSize;
 			}
 
 			if (tileID != -1)
 			{
-				if (tileSet.tile[tileID] == null)
-				{
-					tileSet.tile[tileID] = new Tile();
+				//if (tileSet.tile[tileID] == null)
+				//{
+				//	tileSet.tile[tileID] = new Tile();
 
-					tileSet.tile[tileID].tileSprite.Add( tileSet.tileSheet.CreateSprite(control2SelectionX * 32, control2SelectionY * 32, 32, 32) );
-				}
+				//	tileSet.tile[tileID].tileSprite.Add( tileSet.tileSheet.CreateSprite(control2SelectionX * 32, control2SelectionY * 32, 32, 32) );
+				//}
 
-				listBox1.DataSource = null;
-				listBox1.DataSource = tileSet.tile[tileID].tileSprite;
 
 				if (e.Button == MouseButtons.Right)
 				{
 					int index = listBox1.SelectedIndex;
-					tileSet.tile[tileID].tileSprite[index] = tileSet.tileSheet.CreateSprite(control2SelectionX * 32, control2SelectionY * 32, 32, 32);
+					if (tileSet.tile[tileID].tileSprite.Count > 0)
+					{
+						tileSet.tile[tileID].tileSprite[index] = tileSet.tileSheet.CreateSprite(control2SelectionX * 32, control2SelectionY * 32, 32, 32);
+					}
+					else
+					{
+						tileSet.tile[tileID].tileSprite.Add(tileSet.tileSheet.CreateSprite(control2SelectionX * 32, control2SelectionY * 32, 32, 32));
+					}
 				}
+				listBox1.DataSource = null;
+				listBox1.DataSource = tileSet.tile[tileID].tileSprite;
 				propertyGrid1.SelectedObject = tileSet.tile[tileID];
 			}
 		}
 		private void HandleMouseClick2(object sender, MouseEventArgs e)
 		{
-			control2SelectionX = (e.X + hScrollBar2.Value) / 32;
-			control2SelectionY = (e.Y + vScrollBar2.Value) / 32;
-			control2SelectionW = (32*control2SelectionX) + 32;
-			control2SelectionH = (32*control2SelectionY) + 32;
+			control2SelectionX = (e.X + hScrollBar2.Value) / tileSize;
+			control2SelectionY = (e.Y + vScrollBar2.Value) / tileSize;
+			control2SelectionW = (tileSize * control2SelectionX) + tileSize;
+			control2SelectionH = (tileSize * control2SelectionY) + tileSize;
 		}
 
 		private void openGLControl1_Load(object sender, EventArgs e)
@@ -142,15 +151,15 @@ namespace Modern_Tactics
 			
 			int x = 0;
 			int y = 0;
-			for (int i=0; i < tileSet.tileSetSize; i++)
+			for (int i=0; i < tileSet.tile.Count; i++)
 			{
-				if (x + 32 > this.openGLControl1.Width)
+				if (x + tileSize > this.openGLControl1.Width)
 				{
 					x = 0;
-					y += 32;
+					y += tileSize;
 				}
 				//Draw tile imgs
-				if ( tileSet.tile[i] != null)
+				if ( tileSet.tile[i].tileSprite.Count > 0)
 				{
 					for( int l=0; l < tileSet.tile[i].tileSprite.Count; l++) // to diplay all layers on tile
 					{
@@ -163,22 +172,22 @@ namespace Modern_Tactics
 					gl.LineWidth(2.0f);
 					gl.Begin(OpenGL.GL_QUADS);
 					gl.Vertex(x, y, 1);
-					gl.Vertex(x, y+32, 1);
-					gl.Vertex(x+32,y,1);
-					gl.Vertex(x+32,y+32,1);
+					gl.Vertex(x, y + tileSize, 1);
+					gl.Vertex(x + tileSize, y, 1);
+					gl.Vertex(x + tileSize, y + tileSize, 1);
 					gl.End();
 				}
 				gl.LoadIdentity();
 
-				x += 32;
+				x += tileSize;
 			}
 
 			//Draw Selection
 			gl.Color(1.25f, 0.25f, 0.25f);
 			gl.LineWidth(2.0f);
 			gl.Begin(OpenGL.GL_LINES);
-			gl.Vertex(control1SelectionX * 32, control1SelectionY * 32, 1);
-			gl.Vertex((control1SelectionX * 32) + 32, (control1SelectionY * 32) + 32, 1);
+			gl.Vertex(control1SelectionX * tileSize, control1SelectionY * tileSize, 1);
+			gl.Vertex((control1SelectionX * tileSize) + tileSize, (control1SelectionY * tileSize) + tileSize, 1);
 			gl.End();
 		}
 
@@ -212,23 +221,23 @@ namespace Modern_Tactics
 				gl.Color(1.25f, 0.25f, 0.25f);
 				gl.LineWidth(2.0f);
 				gl.Begin(OpenGL.GL_LINES);
-				gl.Vertex(control2SelectionX*32, control2SelectionY*32, 1);
+				gl.Vertex(control2SelectionX * tileSize, control2SelectionY * tileSize, 1);
 				gl.Vertex(control2SelectionW, control2SelectionH, 1);
 				gl.End();
 
 				//DrawGrid
-				for (int y = 0; y < imgWidth / 32; y++)
+				for (int y = 0; y < imgWidth / tileSize; y++)
 				{
 					gl.Begin(OpenGL.GL_LINES);							// Start Drawing Verticle Cell Borders
-					gl.Vertex(y * 32, 0, 1);// Left Side Of Horizontal Line
-					gl.Vertex(y * 32, imgHeight, 1);// Right Side Of Horizontal Line
+					gl.Vertex(y * tileSize, 0, 1);// Left Side Of Horizontal Line
+					gl.Vertex(y * tileSize, imgHeight, 1);// Right Side Of Horizontal Line
 					gl.End();
 				}
-				for (int x = 0; x < imgHeight / 32; x++)
+				for (int x = 0; x < imgHeight / tileSize; x++)
 				{
 					gl.Begin(OpenGL.GL_LINES);							// Start Drawing Verticle Cell Borders
-					gl.Vertex(0,x*32 , 1);// Left Side Of Horizontal Line
-					gl.Vertex(imgWidth, x * 32, 1);// Right Side Of Horizontal Line
+					gl.Vertex(0, x * tileSize, 1);// Left Side Of Horizontal Line
+					gl.Vertex(imgWidth, x * tileSize, 1);// Right Side Of Horizontal Line
 					gl.End();
 				}
 			}
