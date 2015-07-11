@@ -132,5 +132,10 @@ namespace Modern_Tactics
 
         float rtri = 0;
         float rquad = 0;
+
+        private void openGLControl1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

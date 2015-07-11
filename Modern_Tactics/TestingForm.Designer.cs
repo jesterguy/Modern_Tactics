@@ -43,14 +43,15 @@
             this.openGLControl1.Size = new System.Drawing.Size(579, 455);
             this.openGLControl1.TabIndex = 0;
             this.openGLControl1.OpenGLDraw += new System.Windows.Forms.PaintEventHandler(this.openGLControl1_OpenGLDraw);
+            this.openGLControl1.Load += new System.EventHandler(this.openGLControl1_Load);
             // 
-            // Form3
+            // TestingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(603, 479);
             this.Controls.Add(this.openGLControl1);
-            this.Name = "Form3";
+            this.Name = "TestingForm";
             this.Text = "Form3";
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl1)).EndInit();
             this.ResumeLayout(false);
