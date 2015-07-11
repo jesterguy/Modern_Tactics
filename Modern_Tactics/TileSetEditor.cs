@@ -314,5 +314,10 @@ namespace Modern_Tactics
 			listBox1.DataSource = null;
 			listBox1.DataSource = tileSet.tile[selectedTile].tileSprite;
 		}
+
+		private void changeTileSetSizeToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+
+		}
 	}
 }

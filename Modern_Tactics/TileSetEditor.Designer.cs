@@ -45,6 +45,8 @@
 			this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
 			this.hScrollBar2 = new System.Windows.Forms.HScrollBar();
 			this.vScrollBar2 = new System.Windows.Forms.VScrollBar();
+			this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.changeTileSetSizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.openGLControl1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.openGLControl2)).BeginInit();
 			this.menuStrip2.SuspendLayout();
@@ -108,7 +110,8 @@
 			// menuStrip2
 			// 
 			this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.editToolStripMenuItem});
 			this.menuStrip2.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip2.Name = "menuStrip2";
 			this.menuStrip2.Size = new System.Drawing.Size(666, 24);
@@ -200,6 +203,21 @@
 			this.vScrollBar2.Size = new System.Drawing.Size(17, 195);
 			this.vScrollBar2.TabIndex = 12;
 			// 
+			// editToolStripMenuItem
+			// 
+			this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.changeTileSetSizeToolStripMenuItem});
+			this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+			this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+			this.editToolStripMenuItem.Text = "Edit";
+			// 
+			// changeTileSetSizeToolStripMenuItem
+			// 
+			this.changeTileSetSizeToolStripMenuItem.Name = "changeTileSetSizeToolStripMenuItem";
+			this.changeTileSetSizeToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+			this.changeTileSetSizeToolStripMenuItem.Text = "Change TileSet Size";
+			this.changeTileSetSizeToolStripMenuItem.Click += new System.EventHandler(this.changeTileSetSizeToolStripMenuItem_Click);
+			// 
 			// TileSetEditor
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -247,5 +265,7 @@
 		private System.Windows.Forms.HScrollBar hScrollBar1;
 		private System.Windows.Forms.HScrollBar hScrollBar2;
 		private System.Windows.Forms.VScrollBar vScrollBar2;
+		private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem changeTileSetSizeToolStripMenuItem;
     }
 }

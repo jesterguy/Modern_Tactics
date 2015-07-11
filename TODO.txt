@@ -1,0 +1,24 @@
+tags
+
+add text box to set tileset name
+
+//add scroll bars to both control windows
+
+get img transparancy working
+
+figure out what the im going to do about tile size
+
+get file save and load
+
+remember to make tilemap do its own drawing
+
+figure out and redo all openGL drawing for SPEEEEEEED
+
+
+change tileset editor to make the tileset based on bottom img
+allow deletion of tiles
+show extent without sprite and non existant tiles
+
+make multi selection and sprite setting
+
+figure out github
